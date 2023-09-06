@@ -1,0 +1,8 @@
+name: agaram-node
+services:
+- environment_slug: node-js
+  github:
+    branch: main
+    deploy_on_push: true
+    repo: Brainla/agaram-node
+  name: agaram-node

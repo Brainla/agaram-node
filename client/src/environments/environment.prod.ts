@@ -1,4 +1,4 @@
 export const environment = {
-  serverUrl: 'https://agaramdk-app.herokuapp.com/api',
+  serverUrl: 'https://lionfish-app-6mgry.ondigitalocean.app/api',
   production: true,
 };

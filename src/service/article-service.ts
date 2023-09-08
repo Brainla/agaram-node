@@ -395,9 +395,9 @@ export default class CreateArticle {
   async getArticleByUniqueFields(article: IArticle,isAdmin:boolean): Promise<IArticle|null> {
     try {
       let where:any = {
-        processType:article.processType,
+        processType: { $regex: new RegExp("^" + article.processType.toLowerCase(), "i") },
         assignedTo:article.assignedTo,
-        article:article.article,
+        article:{ $regex: new RegExp("^" + article.article.toLowerCase(), "i") },
         _id:{$ne:article._id}
       }; 
       if(isAdmin){

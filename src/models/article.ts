@@ -69,7 +69,9 @@ const articleSchema = new mongoose.Schema(
     createdAt: {
       type: Date,
       required: true,
-      default: new Date(getCurrentDateWithTime()),
+      default: function(){
+        return new Date(getCurrentDateWithTime())
+      },
     },
     closedDate: {
       type: Date,      

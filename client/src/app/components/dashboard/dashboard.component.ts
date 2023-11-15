@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
   client: string = "";
   totalRows: number = 0;
   page: number = 1;
-  pageSize: number = 10;
+  pageSize: number = 50;
   assignedTo?: string = undefined;
   users: IUser[] | null = [];
   displayedColumns: string[] = [

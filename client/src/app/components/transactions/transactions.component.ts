@@ -17,7 +17,7 @@ export class TransactionsComponent implements OnInit {
   for:string = "ALL";
   totalRows:number=0;
   page:number = 1;
-  pageSize:number=10;
+  pageSize:number=50;
   options = [
     { key: "ALL", value: "ALL" },
     { key: "EMP", value: UserType.EMP },

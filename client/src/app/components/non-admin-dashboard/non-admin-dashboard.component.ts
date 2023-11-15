@@ -25,7 +25,7 @@ export class NonAdminDashboardComponent implements OnInit {
   batch:string = "";
   totalRows:number=0;
   page:number = 1;
-  pageSize:number=10;
+  pageSize:number=50;
   displayedColumns: string[] = [
     '#',
     'Batch/JOB ID',

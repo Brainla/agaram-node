@@ -240,7 +240,7 @@
             </div>
 
 
-            <div class="col-12" *ngIf="data.updateArticle && fromNonAdmin">
+            <div class="col-12" *ngIf="fromNonAdmin">
               <mat-form-field appearance="outline">
                 <mat-label>Status</mat-label>
                 <mat-select [(ngModel)]="userstatus" name="food">
@@ -292,10 +292,10 @@
                 >
               </mat-form-field>
             </div>
-            <div class="col-12" *ngIf="fromNonAdmin && data.updateArticle && !AdminCommand">
+            <!-- <div class="col-12" *ngIf="fromNonAdmin && data.updateArticle && !AdminCommand">
               <div><label>Admin Command</label></div>
               <span>{{AdminCommand}}</span>
-            </div>
+            </div> -->
             <div class="col-12" *ngIf="!fromNonAdmin">
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Admin Command</mat-label>

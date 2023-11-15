@@ -15,7 +15,7 @@ export class UsersComponent implements OnInit {
   loading: boolean = false;
   totalRows:number=0;
   page:number = 1;
-  pageSize:number=10;
+  pageSize:number=50;
   searched:boolean = false;
   employeename:string="";
   displayedColumns: string[] = [

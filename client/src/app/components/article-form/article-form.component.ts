@@ -110,7 +110,7 @@ export class ArticleFormComponent implements OnInit {
       processType: this.processType,
       assignedTo: this.assignedTo,
       status: Status.ASSIGNED,      
-      userstatus:UserStatus["NOT STARTED"],
+      userstatus:this.userstatus,
       complexity:this.complexity,
       inputType:this.inputType,
       mathCount:this.mathCount,

@@ -40,9 +40,9 @@
             </td>
           </tr>
         </tbody>
-      </table>
-      <mat-paginator  [pageIndex]="page-1" [pageSize]="pageSize" [length]="totalRows" (page)="onPageChange($event)" [pageSizeOptions]="[10, 50, 100]" aria-label="Select page">
-      </mat-paginator>
+      </table>      
     </div>
+    <mat-paginator  [pageIndex]="page-1" [pageSize]="pageSize" [length]="totalRows" (page)="onPageChange($event)" [pageSizeOptions]="[10, 50, 100]" aria-label="Select page">
+    </mat-paginator>
   </div>
 </app-side-bar>

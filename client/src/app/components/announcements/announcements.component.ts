@@ -15,7 +15,7 @@ export class AnnouncementsComponent implements OnInit {
   loading: boolean = false;
   totalRows:number=0;
   page:number = 1;
-  pageSize:number=10;
+  pageSize:number=50;
   displayedColumns: string[] = [
     '#',
     'Announcement',

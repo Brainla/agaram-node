@@ -34,7 +34,7 @@ const articleSchema = new mongoose.Schema(
     processType: {
       type: String,
       required: true,
-      enum: ["OCR","EPUB", "CODING", "IMAGES", "REFERENCE", "QUALITY ASURENCE","END TO END"],
+      enum: ["OCR","EPUB", "CODING", "IMAGES", "REFERENCE", "QUALITY ASURENCE","END TO END","SUPPORT", "REWORK"],
       default: "OCR"
     },
     mathCount: {

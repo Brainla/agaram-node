@@ -181,7 +181,9 @@ export enum ProcessType {
   IMAGES = "IMAGES",
   "REFERENCE" = "REFERENCE",
   "QUALITY ASURENCE" = "QUALITY ASURENCE",
-  "END TO END" = "END TO END"
+  "END TO END" = "END TO END",
+  "SUPPORT" ="SUPPORT",
+  "REWORK"="REWORK"
 }
 
 export interface PagedData<T> {

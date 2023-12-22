@@ -66,6 +66,7 @@ export interface IArticle {
   updatedAt: Date,
   AdminCommand: string,
   userstatus:UserStatus,
+  userComments:string,
   userCompletedDate?:Date,
   targetDate?:Date,
 }

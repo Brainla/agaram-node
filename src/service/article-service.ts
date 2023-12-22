@@ -79,6 +79,7 @@ export default class CreateArticle {
     sd?: Date,
     ed?: Date,
     assignedTo?:string,
+    filterDate?:string,
   ): Promise<PagedData<IArticle>> {
 
     try {
@@ -100,20 +101,42 @@ export default class CreateArticle {
       if(assignedTo){
         where.assignedTo = assignedTo;
       }
-      if(sd && ed){
-        where.createdAt= {
-          $gte: getCurrentDate(sd),
-          $lte: getCurrentDate(ed),
+      if(filterDate=="1"){
+        if(sd && ed){
+          where.createdAt= {
+            $gte: getCurrentDate(sd),
+            $lte: getCurrentDate(ed),
+          }
+        }
+        else if(sd){
+          where.createdAt= {
+            $gte: getCurrentDate(sd)
+          }
+        }
+        else if(ed){
+          where.createdAt= {
+            $lte: getCurrentDate(ed)
+          }
         }
       }
-      else if(sd){
-        where.createdAt= {
-          $gte: getCurrentDate(sd)
+      else{
+        if(sd && ed){
+          sd.setHours(0, 0, 0, 0);
+          ed.setHours(23, 59, 59, 999);
+          where.completedDate= {
+            $gte: getCurrentDate(sd),
+            $lte: getCurrentDate(ed),
+          }
         }
-      }
-      else if(ed){
-        where.createdAt= {
-          $lte: getCurrentDate(ed)
+        else if(sd){
+          where.completedDate= {
+            $gte: getCurrentDate(sd)
+          }
+        }
+        else if(ed){
+          where.completedDate= {
+            $lte: getCurrentDate(ed)
+          }
         }
       }
       const search: IArticle[] = await Article.find({       
@@ -179,6 +202,7 @@ export default class CreateArticle {
     sd?: Date,
     ed?: Date,
     assignedTo?:string,
+    filterDate?:string,
   ): Promise<excel.Workbook> {
     try {      
       let where :any= {};
@@ -189,20 +213,42 @@ export default class CreateArticle {
         if(assignedTo){
           where.assignedTo = assignedTo;
         }
-        if(sd && ed){
-          where.createdAt= {
-            $gte: getCurrentDate(sd),
-            $lte: getCurrentDate(ed),
+        if(filterDate=="1"){
+          if(sd && ed){
+            where.createdAt= {
+              $gte: getCurrentDate(sd),
+              $lte: getCurrentDate(ed),
+            }
+          }
+          else if(sd){
+            where.createdAt= {
+              $gte: getCurrentDate(sd)
+            }
+          }
+          else if(ed){
+            where.createdAt= {
+              $lte: getCurrentDate(ed)
+            }
           }
         }
-        else if(sd){
-          where.createdAt= {
-            $gte: getCurrentDate(sd)
+        else{
+          if(sd && ed){
+            sd.setHours(0, 0, 0, 0);
+            ed.setHours(23, 59, 59, 999);
+            where.completedDate= {
+              $gte: getCurrentDate(sd),
+              $lte: getCurrentDate(ed),
+            }
           }
-        }
-        else if(ed){
-          where.createdAt= {
-            $lte: getCurrentDate(ed)
+          else if(sd){
+            where.completedDate= {
+              $gte: getCurrentDate(sd)
+            }
+          }
+          else if(ed){
+            where.completedDate= {
+              $lte: getCurrentDate(ed)
+            }
           }
         }
         if(status!=FilterStatus.ALL){
@@ -287,15 +333,15 @@ export default class CreateArticle {
             }
             return value;
           }
-        },
-        {
-          header:"Status",
-          key:"status"
-        },   
+        },        
         {
           header:"User Status",
           key:"userstatus"
-        },       
+        },      
+        {
+          header:"Status",
+          key:"status"
+        },    
         {
           header:"Created Date",
           key:"createdAt",
@@ -380,6 +426,10 @@ export default class CreateArticle {
         {
           header:"Admin Command",
           key:"AdminCommand"
+        },  
+        {
+          header:"User Comments",
+          key:"userComments"
         },    
       ];    
       if(userId && userId !="0"){
@@ -395,9 +445,9 @@ export default class CreateArticle {
   async getArticleByUniqueFields(article: IArticle,isAdmin:boolean): Promise<IArticle|null> {
     try {
       let where:any = {
-        processType: { $regex: new RegExp("^" + article.processType.toLowerCase(), "i") },
+        processType: { $regex: new RegExp("^" + (article.processType||"").toString().toLowerCase(), "i") },
         assignedTo:article.assignedTo,
-        article:{ $regex: new RegExp("^" + article.article.toLowerCase(), "i") },
+        article:{ $regex: new RegExp("^" + (article.article||"").toString().toLowerCase(), "i") },
         _id:{$ne:article._id}
       }; 
       if(isAdmin){

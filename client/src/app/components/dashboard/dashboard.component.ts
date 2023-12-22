@@ -29,6 +29,7 @@ export class DashboardComponent implements OnInit {
   pageSize: number = 50;
   assignedTo?: string = undefined;
   users: IUser[] | null = [];
+  filterDate: string = "1";
   displayedColumns: string[] = [
     '#',
     'Client',
@@ -39,19 +40,21 @@ export class DashboardComponent implements OnInit {
     'Input Type',
     'Complexity',
     'Process Type',
-    'Math Count',
-    'Images Count',
+    // 'Math Count',
+    // 'Images Count',
     'Assigned To',
     'Status',
     'User Status',
     'Created Date',
-    'Target Date',
+    // 'Target Date',
     // 'Last Updated',
     'Completed Date',
-    'User Completed Date',
+    // 'User Completed Date',
     "Admin Command",
+    'User Comments',
     'Closed Date',
-    'Completed By time'
+    'Completed By time',
+    'Actions'
   ];
   dataSource: IArticle[] = [];
 
@@ -106,7 +109,10 @@ export class DashboardComponent implements OnInit {
     });
     matDialogRef.afterClosed().subscribe((data) => {
       if (data) {
-        this.getArticles();
+        if (this.searched)
+          this.searchArticle();
+        else
+          this.getArticles();
       }
     });
   }
@@ -123,7 +129,10 @@ export class DashboardComponent implements OnInit {
 
     matDialogRef.afterClosed().subscribe((data) => {
       if (data) {
-        this.getArticles();
+        if (this.searched)
+          this.searchArticle();
+        else
+          this.getArticles();
       }
     });
   }
@@ -137,7 +146,10 @@ export class DashboardComponent implements OnInit {
 
     matDialogRef.afterClosed().subscribe((data) => {
       if (data) {
-        this.getArticles();
+        if (this.searched)
+          this.searchArticle();
+        else
+          this.getArticles();
       }
     });
   }
@@ -150,13 +162,16 @@ export class DashboardComponent implements OnInit {
 
     matDialogRef.afterClosed().subscribe((data) => {
       if (data) {
-        this.getArticles();
+        if (this.searched)
+          this.searchArticle();
+        else
+          this.getArticles();
       }
     });
   }
   searchArticle(): void {
     this.loading = true;
-    this._articleService.searchArticle(this.page, this.pageSize, this.status, this.client, false, "", this.startDate, this.endDate, this.assignedTo).subscribe({
+    this._articleService.searchArticle(this.page, this.pageSize, this.status, this.client, false, "", this.startDate, this.endDate, this.assignedTo,this.filterDate).subscribe({
       next: (data) => {
         this.searched = true;
         this.loading = false;
@@ -186,7 +201,7 @@ export class DashboardComponent implements OnInit {
 
   exportDashboard(): void {
     this.loading = true;
-    this._articleService.exportDashboard(this.searched, this.status, this.client, false, "", this.startDate, this.endDate, this.assignedTo).subscribe((data: any) => {
+    this._articleService.exportDashboard(this.searched, this.status, this.client, false, "", this.startDate, this.endDate, this.assignedTo,this.filterDate).subscribe((data: any) => {
       this.loading = false;
       let url = window.URL.createObjectURL(data);
       let a = document.createElement('a');
@@ -224,7 +239,6 @@ export class DashboardComponent implements OnInit {
 
   ShowAdminCommand(): void {
     let data: any = {};
-    debugger;
     data.updateAdminCommand = this.admincommands.length > 0;
     if (this.admincommands.length > 0) {
       data.admincommand = this.admincommands[0]

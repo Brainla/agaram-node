@@ -296,19 +296,23 @@
               <div><label>Admin Command</label></div>
               <span>{{AdminCommand}}</span>
             </div> -->
-            <div class="col-12" *ngIf="!fromNonAdmin">
+            <div class="col-12">
               <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Admin Command</mat-label>
+                <mat-label>User Comments</mat-label>
                 <input
                   matInput
-                  [disabled]="blnUpdateArticle && fromNonAdmin && !IsCreatedByMe"
-                  placeholder="Admin Command"
-                  name="AdminCommand"
-                  [(ngModel)]="AdminCommand"
-                  #AdminCommandTemp="ngModel"
+                  placeholder="Comment"
+                  name="userComments"
+                  [(ngModel)]="userComments"
+                  #userCommentsTemp="ngModel"
                 />
+                <mat-error
+                  *ngIf="userCommentsTemp.invalid &&
+                    (userCommentsTemp.dirty || userCommentsTemp.touched)"
+                  >User Comments</mat-error
+                >
               </mat-form-field>
-            </div>            
+            </div>
 
           </div>
         </div>

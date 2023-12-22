@@ -62,6 +62,7 @@ export class ArticleService {
     sd?: Date,
     ed?: Date,
     assignedTo?:string,
+    filterDate?:string,
   ): Observable<ResponseDTO<PagedData<IArticle>>> {
     let params:any={
       userWise:userWise,
@@ -69,7 +70,8 @@ export class ArticleService {
       pageSize: pageSize,      
       status: (status.toString()),
       client: (client),
-      batch:(batch)
+      batch:(batch),
+      filterDate:filterDate
     };
     if(assignedTo){
       params["assignedTo"]=assignedTo.toString();
@@ -97,14 +99,16 @@ export class ArticleService {
     batch:string,
     sd?: Date,
     ed?: Date,
-    assignedTo?:string
+    assignedTo?:string,
+    filterDate?:string,
     ):any {
       let params :any={
         userWise:userWise,        
         filter:filter,
         status: (status.toString()),
         client: (client),
-        batch:(batch)
+        batch:(batch),
+        filterDate: filterDate,
       };
       if(assignedTo){
         params["assignedTo"]=assignedTo.toString();

@@ -98,6 +98,9 @@ const articleSchema = new mongoose.Schema(
     targetDate: {
       type: Date,      
     },
+    userComments: {
+      type: String,
+    },
   },
   { timestamps: { updatedAt: true, createdAt: false } }
 );

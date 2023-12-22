@@ -130,7 +130,6 @@ export class AuthController {
         sameSite: true,
         secure: process.env.NODE_ENV === "production",
       });
-      console.log(req.userEmail);
       const user:IUser|null = await this._userService.getByEmail(req.userEmail);
       if(user!=null){
         user.lastLoggedToken = accessToken;

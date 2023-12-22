@@ -31,6 +31,13 @@
         <mat-icon>add</mat-icon> Add new task
       </button>
     </h2>
+    <div class="d-flex justify-content-end">
+      <mat-label>Filter by</mat-label>
+      <mat-radio-group class="me-5" aria-label="Select an option" [(ngModel)]="filterDate">
+        <mat-radio-button value="1">Received Date</mat-radio-button>
+        <mat-radio-button value="2">Completed date</mat-radio-button>
+      </mat-radio-group>
+    </div>
     <div class="d-flex justify-content-end my-3">
       <mat-form-field appearance="outline" class="ms-2">
         <mat-label>Batch</mat-label>
@@ -75,7 +82,80 @@
         <mat-icon>close</mat-icon>
       </button>
     </div>
-    <div class="table-responsive fixed-table-height">
+    <section class="table-container mat-elevation-z8" tabindex="0">
+      <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="#">
+          <th mat-header-cell *matHeaderCellDef>#</th>
+          <td mat-cell *matCellDef="let data; let i = index;">{{ ((page-1) * pageSize)+(i + 1) }}</td>
+        </ng-container>        
+        <ng-container matColumnDef="Batch/JOB ID">
+          <th mat-header-cell *matHeaderCellDef>Batch/JOB ID</th>
+          <td mat-cell class="batch-cell" *matCellDef="let data">{{data.batch}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Article/ISBN">
+          <th mat-header-cell *matHeaderCellDef>Article/ISBN</th>
+          <td mat-cell class="article-cell" *matCellDef="let data">{{data.article}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Pages">
+          <th mat-header-cell *matHeaderCellDef>Pages</th>
+          <td mat-cell class="pages-cell" *matCellDef="let data">{{data.pages}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Input Type">
+          <th mat-header-cell *matHeaderCellDef>Input Type</th>
+          <td mat-cell class="inputType-cell" *matCellDef="let data">{{data.inputType}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Complexity">
+          <th mat-header-cell *matHeaderCellDef>Complexity</th>
+          <td mat-cell class="complexity-cell" *matCellDef="let data">{{data.complexity}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Process Type">
+          <th mat-header-cell *matHeaderCellDef>Process Type</th>
+          <td mat-cell class="processType-cell" *matCellDef="let data">{{data.processType}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Assigned To">
+          <th mat-header-cell *matHeaderCellDef>Assigned To</th>
+          <td mat-cell class="assignedTo-cell" *matCellDef="let data">{{data.assignedTo?.username}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell class="userstatus-cell" *matCellDef="let data">{{data.userstatus}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Received Date">
+          <th mat-header-cell *matHeaderCellDef>Received Date</th>
+          <td mat-cell class="createdAt-cell" *matCellDef="let data">{{data.createdAt| date}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Completed Date">
+          <th mat-header-cell *matHeaderCellDef>Completed Date</th>
+          <td mat-cell class="completedDate-cell" *matCellDef="let data">{{data.completedDate| date}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Admin Command">
+          <th mat-header-cell *matHeaderCellDef>Admin Command</th>
+          <td mat-cell class="AdminCommand-cell" *matCellDef="let data">{{data.AdminCommand}}</td>
+        </ng-container>
+        <ng-container matColumnDef="User Comments">
+          <th mat-header-cell *matHeaderCellDef>User Comments</th>
+          <td mat-cell class="userComments-cell" *matCellDef="let data">{{data.userComments}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell class="CompletedBytime-cell" *matCellDef="let data">
+            <div class="d-flex">
+              <button mat-icon-button *ngIf="!data.IsClosed" color="primary" matTooltip="edit" (click)="openUpdateArticle(data)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="accent" matTooltip="delete" (click)="openDeleteArticle(data)">
+                <mat-icon>delete</mat-icon>
+              </button>                
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </section>
+
+    <!-- <div class="table-responsive fixed-table-height">
       <table class="table table-striped table-bordered">
         <thead class="thead-light">
           <tr>            
@@ -91,23 +171,17 @@
           <tr *ngFor="let data of dataSource; let i = index">           
             <th scope="row">{{ ((page-1) * pageSize)+(i + 1) }}</th>
             <td>{{ data.batch }}</td>
-            <!-- <td>{{ data.articleTypes }}</td> -->
             <td>{{ data.article }}</td>
             <td>{{ data.pages }}</td>
             <td>{{ data.inputType }}</td>
             <td>{{ data.complexity }}</td>
             <td>{{ data.processType }}</td>
-            <td>{{ data.mathCount }}</td>
-            <td>{{ data.imagesCount }}</td>
             <td>{{ data.assignedTo?.username }}</td>
             <td>{{ data.userstatus }}</td>
             <td>{{ data.createdAt| date }}</td>
-            <td>{{ data.targetDate| date }}</td>
-            <!-- <td>{{ data.updatedAt| date }}</td> -->
-            <!-- <td>{{ data.closedDate| date }}</td> -->
-            <td>{{ data.userCompletedDate| date }}</td>
             <td>{{ data.completedDate| date }}</td>
             <td>{{ data.AdminCommand }}</td>
+            <td>{{ data.userComments }}</td>
             <td>
               <div class="d-flex">
                 <button mat-icon-button *ngIf="!data.IsClosed" color="primary" matTooltip="edit" (click)="openUpdateArticle(data)">
@@ -120,8 +194,8 @@
             </td>
           </tr>
         </tbody>
-      </table>
-    </div>
+      </table> 
+    </div>-->
     <mat-paginator  [pageIndex]="page-1" [pageSize]="pageSize" [length]="totalRows" (page)="onPageChange($event)" [pageSizeOptions]="[10, 50, 100]" aria-label="Select page">
     </mat-paginator>
   </div>

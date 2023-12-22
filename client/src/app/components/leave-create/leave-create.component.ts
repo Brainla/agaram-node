@@ -60,7 +60,6 @@ export class CreateLeaveComponent implements OnInit {
     })
   }
   updateLeave(): void {
-    debugger;
     const loggedUser: IUser | null = this._authService.getLoggedInUser();
     delete this.formData.appliedBy;    
     this.formData.appliedBy = loggedUser?._id;

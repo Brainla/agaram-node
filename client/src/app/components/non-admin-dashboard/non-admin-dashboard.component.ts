@@ -26,27 +26,22 @@ export class NonAdminDashboardComponent implements OnInit {
   totalRows:number=0;
   page:number = 1;
   pageSize:number=50;
+  filterDate: string = "1";
   displayedColumns: string[] = [
     '#',
     'Batch/JOB ID',
-    // 'Article Type',
     'Article/ISBN',
     'Pages',
     'Input Type',
     'Complexity',
     'Process Type',
-    'Math Count',
-    'Images Count',
     'Assigned To',
     'Status',    
     'Received Date',
-    'Target Date',
-    'User Completed Date',
-    //'Last Updated',
     'Completed Date',
-    
-    //'Closed Date',
-    "Admin Command",
+    "Admin Command",    
+    'User Comments',
+    'Actions'
   ];
   dataSource: IArticle[] = [];
 
@@ -91,7 +86,10 @@ export class NonAdminDashboardComponent implements OnInit {
     });
     matDialogRef.afterClosed().subscribe((data) => {
       if (data) {
-        this.getArticles();
+        if(this.searched)
+          this.searchArticle();
+        else
+          this.getArticles();
       }
     });
   }
@@ -109,7 +107,10 @@ export class NonAdminDashboardComponent implements OnInit {
 
     matDialogRef.afterClosed().subscribe((data) => {
       if (data) {
-        this.getArticles();
+        if(this.searched)
+          this.searchArticle();
+        else
+          this.getArticles();
       }
     });
   }
@@ -123,14 +124,17 @@ export class NonAdminDashboardComponent implements OnInit {
 
     matDialogRef.afterClosed().subscribe((data) => {
       if (data) {
-        this.getArticles();
+        if(this.searched)
+          this.searchArticle();
+        else
+          this.getArticles();
       }
     });
   }
 
   searchArticle(): void {
     this.loading = true;
-    this._articleService.searchArticle(this.page, this.pageSize,this.status,"",true,this.batch,this.startDate, this.endDate).subscribe({
+    this._articleService.searchArticle(this.page, this.pageSize,this.status,"",true,this.batch,this.startDate, this.endDate,undefined,this.filterDate).subscribe({
       next: (data) => {
         this.searched = true;
         this.loading = false;
@@ -149,7 +153,7 @@ export class NonAdminDashboardComponent implements OnInit {
 
   exportDashboard():void{
     this.loading = true;
-    this._articleService.exportDashboard(this.searched,this.status,"",true,this.batch,this.startDate, this.endDate).subscribe((data:any)=>{
+    this._articleService.exportDashboard(this.searched,this.status,"",true,this.batch,this.startDate, this.endDate,this.filterDate).subscribe((data:any)=>{
       this.loading = false;
       let url = window.URL.createObjectURL(data);
       let a = document.createElement('a');
@@ -169,7 +173,10 @@ export class NonAdminDashboardComponent implements OnInit {
 
     matDialogRef.afterClosed().subscribe((data) => {
       if (data) {
-        this.getArticles();
+        if(this.searched)
+          this.searchArticle();
+        else
+          this.getArticles();
       }
     });
   }
@@ -212,7 +219,10 @@ export class NonAdminDashboardComponent implements OnInit {
 
     matDialogRef.afterClosed().subscribe((data) => {
       if (data) {
-        this.getArticles();
+        if(this.searched)
+          this.searchArticle();
+        else
+          this.getArticles();
       }
     });
   }

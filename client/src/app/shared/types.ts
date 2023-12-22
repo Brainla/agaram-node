@@ -63,6 +63,7 @@ export default interface IArticle {
   IsClosed: Boolean;
   userCompletedDate?:Date;
   targetDate?:Date;
+  userComments: string;
 }
 
 export interface IArticleSave {
@@ -87,6 +88,7 @@ export interface IArticleSave {
   createdBy?: string,
   userCompletedDate?:Date,
   targetDate?:Date,
+  userComments:string,
 }
 
 export enum Status {

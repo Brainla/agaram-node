@@ -98,7 +98,7 @@ export default class ArticleController {
     next: NextFunction
   ): Promise<Response<ResponseDTO<PagedData<IArticle>>> | void> {
     try {
-      const { client, status, page, pageSize, sd, ed, userWise, batch, assignedTo } = request.query;
+      const { client, status, page, pageSize, sd, ed, userWise, batch, assignedTo, filterDate } = request.query;
 
       let userId: string = "0";
       if (userWise && userWise == "true") {
@@ -114,6 +114,7 @@ export default class ArticleController {
       let assto: string | undefined = (assignedTo ? assignedTo.toString() : undefined);
       let sdate = undefined;
       let edate = undefined;
+      let letfilterDate: string | undefined = (filterDate ? filterDate.toString() : undefined);
       if (sd) {
         sdate = new Date(sd as string);
       }
@@ -129,7 +130,8 @@ export default class ArticleController {
         pageSizeNumber,
         sdate,
         edate,
-        assto
+        assto,
+        letfilterDate
       );
       const responseDTO = new ResponseDTO<PagedData<IArticle>>(
         statusCode.OK,
@@ -210,9 +212,10 @@ export default class ArticleController {
     next: NextFunction
   ): Promise<Response<Blob> | void> {
     try {
-      const { sd, ed, filter, status, client, userWise, batch, assignedTo } = request.query;
+      const { sd, ed, filter, status, client, userWise, batch, assignedTo,filterDate } = request.query;
       let userId: string = "0";
       let assto: string | undefined = (assignedTo ? assignedTo.toString() : undefined);
+      let letfilterDate: string | undefined = (filterDate ? filterDate.toString() : undefined);
       if (userWise && userWise == "true") {
         if (request.user?._id) {
           userId = request.user?._id;
@@ -234,7 +237,8 @@ export default class ArticleController {
         userId,
         sdate,
         edate,
-        assto
+        assto,
+        letfilterDate
       );
       let filename = "Articles";
       response.set({

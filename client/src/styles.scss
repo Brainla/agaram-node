@@ -1,11 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @font-face {
-  font-family: 'Raleway';
-  src: url('./assets/OpenSans-Regular.ttf');
+  font-family: "Raleway";
+  src: url("./assets/OpenSans-Regular.ttf");
 }
 
 :root {
-  --bs-body-font-family: 'Raleway', sans-serif;
+  --bs-body-font-family: "Raleway", sans-serif;
 }
 
 html,
@@ -19,7 +19,7 @@ body {
 }
 
 * {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
 body {
@@ -72,7 +72,7 @@ body {
 .sidebar .nav-link {
   font-weight: 500;
   color: #fff;
-  border-bottom: 1px solid #E24C11;
+  border-bottom: 1px solid #e24c11;
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
 }
@@ -84,7 +84,7 @@ body {
 
 .sidebar .nav-link.active,
 .sidebar .nav-link:hover {
-  background: #E24C11;
+  background: #e24c11;
 }
 
 .sidebar .nav-link:hover .feather,
@@ -177,9 +177,9 @@ header.bg-dark {
   left: 50%;
   width: 150px;
   height: 2px;
-  content: '';
+  content: "";
   border-radius: 5px;
-  background: #E24C11;
+  background: #e24c11;
   bottom: 0;
   margin-left: -75px;
 }
@@ -210,7 +210,7 @@ header.bg-dark {
   margin-right: 10px;
 }
 
-.navbar-dark .navbar-nav .show>.nav-link,
+.navbar-dark .navbar-nav .show > .nav-link,
 .navbar-dark .navbar-nav .nav-link.active,
 .navbar-dark .navbar-nav .nav-link:hover {
   border-bottom: 2px solid #fff;
@@ -240,6 +240,21 @@ input.mat-input-element {
   color: #234254;
 }
 
-.fixed-table-height{
+.fixed-table-height {
   height: 600px;
+}
+
+table.mat-table {
+  width: 100%;
+}
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+  padding: 10px !important; 
+  border: 1px solid #000 !important;
+}
+.table-container {
+  height: 600px;
+  overflow: auto;
+}
+.mat-radio-button {
+  margin-left: 16px;
 }

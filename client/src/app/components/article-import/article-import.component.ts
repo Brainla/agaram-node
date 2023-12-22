@@ -81,6 +81,7 @@ export class ArticleImportComponent implements OnInit {
       AdminCommand:obj["Admin Command"],
       targetDate:obj["Target Date"],
       userCompletedDate:obj["User Completed Date"],
+      userComments:obj["User Comments"],
     };
     return returnObj;
   } 

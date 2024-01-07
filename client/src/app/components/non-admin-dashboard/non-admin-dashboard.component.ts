@@ -32,6 +32,7 @@ export class NonAdminDashboardComponent implements OnInit {
     'Batch/JOB ID',
     'Article/ISBN',
     'Pages',
+    'Page Limit',
     'Input Type',
     'Complexity',
     'Process Type',

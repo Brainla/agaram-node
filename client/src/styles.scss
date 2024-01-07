@@ -47,7 +47,7 @@ body {
   left: 0;
   z-index: 100;
   /* Behind the navbar */
-  padding: 70px 0 0;
+  padding: 100px 0 0;
   /* Height of navbar */
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
   background: #234254 !important;
@@ -62,7 +62,7 @@ body {
 .sidebar-sticky {
   position: relative;
   top: 0;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 100px);
   padding-top: 0.5rem;
   overflow-x: hidden;
   overflow-y: auto;
@@ -156,10 +156,12 @@ body {
 .bad {
   color: #bd2102;
 }
-
+header{
+  background: #fff;
+}
 header.bg-dark {
   background: #234254 !important;
-  min-height: 70px;
+  min-height: 100px;
 }
 
 .page-heading {
@@ -192,7 +194,7 @@ header.bg-dark {
 
 .navbar-nav .nav-link {
   display: inline-block;
-  color: #fff;
+  color: rgba(99, 99, 99);
   font-weight: bold;
 }
 
@@ -205,15 +207,16 @@ header.bg-dark {
   margin-top: 10px;
 }
 
-.navbar-dark .navbar-nav .nav-link {
+.navbar-nav .nav-link {
   border-bottom: 2px solid transparent;
   margin-right: 10px;
 }
 
-.navbar-dark .navbar-nav .show > .nav-link,
-.navbar-dark .navbar-nav .nav-link.active,
-.navbar-dark .navbar-nav .nav-link:hover {
-  border-bottom: 2px solid #fff;
+.navbar-nav .show > .nav-link,
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+  border-bottom: 2px solid #3f51b5 !important;
+  color: #3f51b5;
 }
 
 thead,
@@ -257,4 +260,10 @@ th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
 }
 .mat-radio-button {
   margin-left: 16px;
+}
+th.mat-header-cell{
+  font-family: "Raleway", sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: bold !important;
+  color: #000 !important;
 }

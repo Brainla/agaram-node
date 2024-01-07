@@ -62,8 +62,8 @@
             <td>{{ data.for }}</td>
             <td>{{ this.getUsers(data.userList) }}</td>
             <td>{{ data.date | date }}</td>            
-            <td>Rs. {{ data.paid }}</td>
-            <td>Rs. {{ data.recieved }}</td>            
+            <td>{{data.paid && "Rs."}} {{ data.paid }}</td>
+            <td>{{data.recieved && "Rs."}} {{ data.recieved }}</td>            
             <td>{{ data.description }}</td>
             <td>
               <div class="d-flex">

@@ -38,23 +38,23 @@ export const transactionValidatorSchema: ValidatorObject[] = [
          notBlank: "for should not be blank",
        },
     },
-    {
-       key: "paid",
-       type: ValidatorTypes.Number,
-       validators: [FunctionTypes.required, FunctionTypes.notBlank],
-       messages: {
-         required: "paid is required",
-         notBlank: "paid should not be blank",
-       },
-    },
+    // {
+    //    key: "paid",
+    //    type: ValidatorTypes.Number,
+    //    validators: [FunctionTypes.required, FunctionTypes.notBlank],
+    //    messages: {
+    //      required: "paid is required",
+    //      notBlank: "paid should not be blank",
+    //    },
+    // },
    
-    {
-       key: "recieved",
-       type: ValidatorTypes.Number,
-       validators: [FunctionTypes.required, FunctionTypes.notBlank],
-       messages: {
-         required: "amount is required",
-         notBlank: "amount should not be blank",
-       },
-    },
+    // {
+    //    key: "recieved",
+    //    type: ValidatorTypes.Number,
+    //    validators: [FunctionTypes.required, FunctionTypes.notBlank],
+    //    messages: {
+    //      required: "amount is required",
+    //      notBlank: "amount should not be blank",
+    //    },
+    // },
    ]; 

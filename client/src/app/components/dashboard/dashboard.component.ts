@@ -37,6 +37,7 @@ export class DashboardComponent implements OnInit {
     // 'Article Type',
     'Article/ISBN',
     'Pages',
+    'Page Limit',
     'Input Type',
     'Complexity',
     'Process Type',

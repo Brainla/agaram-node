@@ -101,6 +101,9 @@ const articleSchema = new mongoose.Schema(
     userComments: {
       type: String,
     },
+    assignedPages: {
+      type: String,
+    },
   },
   { timestamps: { updatedAt: true, createdAt: false } }
 );

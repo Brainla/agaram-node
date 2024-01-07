@@ -67,6 +67,7 @@ export interface IArticle {
   AdminCommand: string,
   userstatus:UserStatus,
   userComments:string,
+  assignedPages: string,
   userCompletedDate?:Date,
   targetDate?:Date,
 }

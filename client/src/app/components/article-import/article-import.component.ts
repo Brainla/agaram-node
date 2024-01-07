@@ -57,7 +57,6 @@ export class ArticleImportComponent implements OnInit {
         });
         this.jsonData=[];
       }
-      console.log(datte);
       return datte;
     }
     return undefined;
@@ -67,7 +66,7 @@ export class ArticleImportComponent implements OnInit {
       client:obj["Client"],
       batch: obj["Batch/JOB ID"],
       article:obj["Article/ISBN"],
-      pages: obj["Pages"],
+      pages: obj["Pages"],      
       processType: obj["Process Type"],
       assignedTo: obj["Assigned To"],
       userstatus:obj["User Status"],
@@ -82,6 +81,7 @@ export class ArticleImportComponent implements OnInit {
       targetDate:obj["Target Date"],
       userCompletedDate:obj["User Completed Date"],
       userComments:obj["User Comments"],
+      assignedPages:obj["Page Limit"],
     };
     return returnObj;
   } 

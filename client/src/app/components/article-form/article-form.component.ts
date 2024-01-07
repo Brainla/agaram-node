@@ -14,6 +14,7 @@ import IArticle, { IArticleSave, IUser, Status } from 'src/app/shared/types';
 })
 export class ArticleFormComponent implements OnInit {
   batch:string = "";
+  assignedPages:string="";
   userComments:string = "";
   client:string = "";
   articleType: string = "";
@@ -71,7 +72,9 @@ export class ArticleFormComponent implements OnInit {
       this.AdminCommand = this.data.article.AdminCommand;
       this.processType= ProcessType[this.data.article.processType];    
       if(this.data.article.userComments)
-          this.userComments = this.data.article.userComments; 
+        this.userComments = this.data.article.userComments;      
+      if(this.data.article.assignedPages)
+        this.assignedPages = this.data.article.assignedPages;
       if(!this.fromNonAdmin){
         if(this.data.article.status)
           this.status= Status[this.data.article.status];
@@ -80,7 +83,7 @@ export class ArticleFormComponent implements OnInit {
         }
         if(this.data.article.targetDate){
           this.targetDate = this.data.article.targetDate;
-        }
+        }         
       }     
       if(this.fromNonAdmin){
         this.userstatus = UserStatus[this.data.article.userstatus];        
@@ -123,6 +126,7 @@ export class ArticleFormComponent implements OnInit {
       completedDate:this.completedDate,
       AdminCommand:this.AdminCommand,
       userComments: this.userComments,
+      assignedPages: this.assignedPages,
     }
     data.createdBy = loggedUser?._id;
     if(this.fromNonAdmin){
@@ -181,6 +185,7 @@ export class ArticleFormComponent implements OnInit {
       completedDate:this.completedDate,
       AdminCommand:this.AdminCommand,
       userComments:this.userComments,
+      assignedPages:this.assignedPages,
       _id:this._id
     }
     

@@ -100,6 +100,10 @@
           <th mat-header-cell *matHeaderCellDef>Pages</th>
           <td mat-cell class="pages-cell" *matCellDef="let data">{{data.pages}}</td>
         </ng-container>
+        <ng-container matColumnDef="Page Limit">
+          <th mat-header-cell *matHeaderCellDef>Page Limit</th>
+          <td mat-cell class="assignedPages-cell" *matCellDef="let data">{{data.assignedPages}}</td>
+        </ng-container>
         <ng-container matColumnDef="Input Type">
           <th mat-header-cell *matHeaderCellDef>Input Type</th>
           <td mat-cell class="inputType-cell" *matCellDef="let data">{{data.inputType}}</td>

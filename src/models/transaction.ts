@@ -22,11 +22,11 @@ const transactionSchema = new mongoose.Schema(
     },
     paid: {
       type: Number,
-      required: true,
+      // required: true,
     },
     recieved: {
       type: Number,
-      required: true,
+      // required: true,
     },
   createdAt: {
       type: Date,

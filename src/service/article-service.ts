@@ -18,6 +18,7 @@ export default class CreateArticle {
       processType:article.processType,
       assignedTo:article.assignedTo,
       article:article.article,
+      assignedPages:article.assignedPages,
       _id:{$ne:article._id}
     });
     
@@ -282,6 +283,10 @@ export default class CreateArticle {
           key:"pages"
         },
         {
+          header:"Page Limit",
+          key:"assignedPages"
+        },    
+        {
           header:"Input Type",
           key:"inputType"
         },
@@ -448,6 +453,7 @@ export default class CreateArticle {
         processType: { $regex: new RegExp("^" + (article.processType||"").toString().toLowerCase(), "i") },
         assignedTo:article.assignedTo,
         article:{ $regex: new RegExp("^" + (article.article||"").toString().toLowerCase(), "i") },
+        assignedPages:{ $regex: new RegExp("^" + (article.assignedPages||"").toString().toLowerCase(), "i") },
         _id:{$ne:article._id}
       }; 
       if(isAdmin){

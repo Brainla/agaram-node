@@ -1,4 +1,4 @@
 export const environment = {
-  serverUrl: 'https://agaram-app-ntjbi.ondigitalocean.app/api',
+  serverUrl: 'https://agaram-7t7z2.ondigitalocean.app/api',
   production: true,
 };

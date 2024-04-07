@@ -106,15 +106,15 @@
         </ng-container>
         <ng-container matColumnDef="Input Type">
           <th mat-header-cell *matHeaderCellDef>Input Type</th>
-          <td mat-cell class="inputType-cell" *matCellDef="let data">{{data.inputType}}</td>
+          <td mat-cell class="inputType-cell" *matCellDef="let data">{{getDisplayInputType(data.inputType)}}</td>
         </ng-container>
         <ng-container matColumnDef="Complexity">
           <th mat-header-cell *matHeaderCellDef>Complexity</th>
-          <td mat-cell class="complexity-cell" *matCellDef="let data">{{data.complexity}}</td>
+          <td mat-cell class="complexity-cell" *matCellDef="let data">{{getDisplayComplexity(data.complexity)}}</td>
         </ng-container>
         <ng-container matColumnDef="Process Type">
           <th mat-header-cell *matHeaderCellDef>Process Type</th>
-          <td mat-cell class="processType-cell" *matCellDef="let data">{{data.processType}}</td>
+          <td mat-cell class="processType-cell" *matCellDef="let data">{{getDisplayProcessType(data.processType)}}</td>
         </ng-container>
         <ng-container matColumnDef="Assigned To">
           <th mat-header-cell *matHeaderCellDef>Assigned To</th>
@@ -122,7 +122,7 @@
         </ng-container>
         <ng-container matColumnDef="Status">
           <th mat-header-cell *matHeaderCellDef>Status</th>
-          <td mat-cell class="userstatus-cell" *matCellDef="let data">{{data.userstatus}}</td>
+          <td mat-cell class="userstatus-cell" *matCellDef="let data">{{getDisplayUserStatus(data.userstatus)}}</td>
         </ng-container>
         <ng-container matColumnDef="Received Date">
           <th mat-header-cell *matHeaderCellDef>Received Date</th>
@@ -132,10 +132,10 @@
           <th mat-header-cell *matHeaderCellDef>Completed Date</th>
           <td mat-cell class="completedDate-cell" *matCellDef="let data">{{data.completedDate| date}}</td>
         </ng-container>
-        <ng-container matColumnDef="Admin Command">
+        <!-- <ng-container matColumnDef="Admin Command">
           <th mat-header-cell *matHeaderCellDef>Admin Command</th>
           <td mat-cell class="AdminCommand-cell" *matCellDef="let data">{{data.AdminCommand}}</td>
-        </ng-container>
+        </ng-container> -->
         <ng-container matColumnDef="User Comments">
           <th mat-header-cell *matHeaderCellDef>User Comments</th>
           <td mat-cell class="userComments-cell" *matCellDef="let data">{{data.userComments}}</td>
@@ -147,9 +147,9 @@
               <button mat-icon-button *ngIf="!data.IsClosed" color="primary" matTooltip="edit" (click)="openUpdateArticle(data)">
                 <mat-icon>edit</mat-icon>
               </button>
-              <button mat-icon-button color="accent" matTooltip="delete" (click)="openDeleteArticle(data)">
+              <!-- <button mat-icon-button color="accent" matTooltip="delete" (click)="openDeleteArticle(data)">
                 <mat-icon>delete</mat-icon>
-              </button>                
+              </button>                 -->
             </div>
           </td>
         </ng-container>

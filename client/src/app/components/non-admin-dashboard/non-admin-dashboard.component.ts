@@ -9,6 +9,7 @@ import { ArticleImportComponent } from '../article-import/article-import.compone
 import { PageEvent } from '@angular/material/paginator';
 import { AdminCommandService } from 'src/app/services/admin-command.service';
 import { ArticleCloseComponent } from '../article-close/article-close.component';
+import { displayComplexity, displayInputType, displayProcessType, displayStatus, displayUserStatus } from 'src/app/shared/displayEnums';
 
 @Component({
   selector: 'app-non-admin-dashboard',
@@ -40,7 +41,7 @@ export class NonAdminDashboardComponent implements OnInit {
     'Status',    
     'Received Date',
     'Completed Date',
-    "Admin Command",    
+    // "Admin Command",    
     'User Comments',
     'Actions'
   ];
@@ -76,7 +77,21 @@ export class NonAdminDashboardComponent implements OnInit {
       });
     }    
   }
-
+  getDisplayStatus(str:string):any{
+    return displayStatus[str].toString();
+  }
+  getDisplayInputType(str:string):any{
+    return displayInputType[str].toString();
+  }
+  getDisplayComplexity(str:string):any{
+    return displayComplexity[str].toString();
+  }
+  getDisplayProcessType(str:string):any{
+    return displayProcessType[str].toString();
+  }
+  getDisplayUserStatus(str:string):any{
+    return displayUserStatus[str].toString();
+  }
   openCreateArticle() {
     const matDialogRef = this._matDialog.open(ArticleFormComponent, {
       data: {

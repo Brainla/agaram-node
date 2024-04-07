@@ -233,7 +233,7 @@
                 <mat-label>Assigned To</mat-label>
                 <mat-select #assignedToTemp="ngModel" required [(ngModel)]="assignedTo" name="assignedTo">
                   <mat-option *ngFor="let option of users" [value]="option._id">
-                    {{option.username}} - {{option.employeeId}} ({{option.type}})
+                    {{option.username}} - ({{option.type}})
                   </mat-option>
                 </mat-select>
                 <mat-error

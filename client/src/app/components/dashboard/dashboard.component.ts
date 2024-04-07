@@ -4,12 +4,13 @@ import { PageEvent } from '@angular/material/paginator';
 import { AdminCommandService } from 'src/app/services/admin-command.service';
 import { ArticleService } from 'src/app/services/article.service';
 import { UserService } from 'src/app/services/user.service';
-import IArticle, { FilterStatus, IAdminCommand, IUser, PagedData } from 'src/app/shared/types';
+import IArticle, { FilterStatus, IAdminCommand, IUser, InputType, PagedData } from 'src/app/shared/types';
 import { ArticleCloseComponent } from '../article-close/article-close.component';
 import { ArticleDeleteComponent } from '../article-delete/article-delete.component';
 import { ArticleFormComponent } from '../article-form/article-form.component';
 import { ArticleImportComponent } from '../article-import/article-import.component';
 import { CreateAdminCommandComponent } from '../create-admincommand/create-admincommand.component';
+import { displayComplexity, displayInputType, displayProcessType, displayStatus, displayUserStatus } from 'src/app/shared/displayEnums';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,7 +21,7 @@ export class DashboardComponent implements OnInit {
   admincommands: IAdminCommand[] = [];
   startDate?: Date = undefined;
   endDate?: Date = undefined;
-  searched: boolean = false;
+  searched: boolean = false;  
   statusOptions = Object.keys(FilterStatus);
   status: FilterStatus = FilterStatus.ALL;
   client: string = "";
@@ -32,7 +33,7 @@ export class DashboardComponent implements OnInit {
   filterDate: string = "1";
   displayedColumns: string[] = [
     '#',
-    'Client',
+    // 'Client',
     'Batch/JOB ID',
     // 'Article Type',
     'Article/ISBN',
@@ -51,10 +52,10 @@ export class DashboardComponent implements OnInit {
     // 'Last Updated',
     'Completed Date',
     // 'User Completed Date',
-    "Admin Command",
+    // "Admin Command",
     'User Comments',
-    'Closed Date',
-    'Completed By time',
+    // 'Closed Date',
+    // 'Completed By time',
     'Actions'
   ];
   dataSource: IArticle[] = [];
@@ -100,7 +101,21 @@ export class DashboardComponent implements OnInit {
       },
     });
   }
-
+  getDisplayStatus(str:string):any{
+    return displayStatus[str].toString();
+  }
+  getDisplayInputType(str:string):any{
+    return displayInputType[str].toString();
+  }
+  getDisplayComplexity(str:string):any{
+    return displayComplexity[str].toString();
+  }
+  getDisplayProcessType(str:string):any{
+    return displayProcessType[str].toString();
+  }
+  getDisplayUserStatus(str:string):any{
+    return displayUserStatus[str].toString();
+  }
   openCreateArticle() {
     const matDialogRef = this._matDialog.open(ArticleFormComponent, {
       data: {

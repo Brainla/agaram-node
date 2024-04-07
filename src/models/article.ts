@@ -34,7 +34,20 @@ const articleSchema = new mongoose.Schema(
     processType: {
       type: String,
       required: true,
-      enum: ["OCR","EPUB", "CODING", "IMAGES", "REFERENCE", "QUALITY ASURENCE","END TO END","SUPPORT", "REWORK"],
+      enum: ["OCR",
+        "EPUB", 
+        "CODING", 
+        "IMAGES", 
+        "REFERENCE", 
+        "QUALITY ASURENCE",
+        "END TO END",
+        "SUPPORT", 
+        "REWORK",
+        "InDesign to XML",
+        "Word to XML",
+        "ePub to XML",
+        "XML to PDF"
+      ],
       default: "OCR"
     },
     mathCount: {

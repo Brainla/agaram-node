@@ -76,10 +76,10 @@
           <th mat-header-cell *matHeaderCellDef>#</th>
           <td mat-cell *matCellDef="let data; let i = index;">{{ ((page-1) * pageSize)+(i + 1) }}</td>
         </ng-container>
-        <ng-container matColumnDef="Client">
+        <!-- <ng-container matColumnDef="Client">
           <th mat-header-cell *matHeaderCellDef>Client</th>
           <td mat-cell class="client-cell" *matCellDef="let data">{{data.client}}</td>
-        </ng-container>
+        </ng-container> -->
         <ng-container matColumnDef="Batch/JOB ID">
           <th mat-header-cell *matHeaderCellDef>Batch/JOB ID</th>
           <td mat-cell class="batch-cell" *matCellDef="let data">{{data.batch}}</td>
@@ -98,15 +98,15 @@
         </ng-container>
         <ng-container matColumnDef="Input Type">
           <th mat-header-cell *matHeaderCellDef>Input Type</th>
-          <td mat-cell class="inputType-cell" *matCellDef="let data">{{data.inputType}}</td>
+          <td mat-cell class="inputType-cell" *matCellDef="let data">{{getDisplayInputType(data.inputType)}}</td>
         </ng-container>
         <ng-container matColumnDef="Complexity">
           <th mat-header-cell *matHeaderCellDef>Complexity</th>
-          <td mat-cell class="complexity-cell" *matCellDef="let data">{{data.complexity}}</td>
+          <td mat-cell class="complexity-cell" *matCellDef="let data">{{getDisplayComplexity(data.complexity)}}</td>
         </ng-container>
         <ng-container matColumnDef="Process Type">
           <th mat-header-cell *matHeaderCellDef>Process Type</th>
-          <td mat-cell class="processType-cell" *matCellDef="let data">{{data.processType}}</td>
+          <td mat-cell class="processType-cell" *matCellDef="let data">{{getDisplayProcessType(data.processType)}}</td>
         </ng-container>
         <ng-container matColumnDef="Assigned To">
           <th mat-header-cell *matHeaderCellDef>Assigned To</th>
@@ -114,11 +114,11 @@
         </ng-container>
         <ng-container matColumnDef="Status">
           <th mat-header-cell *matHeaderCellDef>Status</th>
-          <td mat-cell class="status-cell" *matCellDef="let data">{{data.status}}</td>
+          <td mat-cell class="status-cell" *matCellDef="let data">{{getDisplayStatus(data.status)}}</td>
         </ng-container>
         <ng-container matColumnDef="User Status">
           <th mat-header-cell *matHeaderCellDef>User Status</th>
-          <td mat-cell class="userstatus-cell" *matCellDef="let data">{{data.userstatus}}</td>
+          <td mat-cell class="userstatus-cell" *matCellDef="let data">{{getDisplayUserStatus(data.userstatus)}}</td>
         </ng-container>
         <ng-container matColumnDef="Created Date">
           <th mat-header-cell *matHeaderCellDef>Created Date</th>
@@ -128,23 +128,23 @@
           <th mat-header-cell *matHeaderCellDef>Completed Date</th>
           <td mat-cell class="completedDate-cell" *matCellDef="let data">{{data.completedDate| date}}</td>
         </ng-container>
-        <ng-container matColumnDef="Admin Command">
+        <!-- <ng-container matColumnDef="Admin Command">
           <th mat-header-cell *matHeaderCellDef>Admin Command</th>
           <td mat-cell class="AdminCommand-cell" *matCellDef="let data">{{data.AdminCommand}}</td>
-        </ng-container>
+        </ng-container> -->
         <ng-container matColumnDef="User Comments">
           <th mat-header-cell *matHeaderCellDef>User Comments</th>
           <td mat-cell class="userComments-cell" *matCellDef="let data">{{data.userComments}}</td>
         </ng-container>
-        <ng-container matColumnDef="Closed Date">
+        <!-- <ng-container matColumnDef="Closed Date">
           <th mat-header-cell *matHeaderCellDef>Closed Date</th>
           <td mat-cell class="closedDate-cell" *matCellDef="let data">{{data.closedDate|date}}</td>
-        </ng-container>
-        <ng-container matColumnDef="Completed By time">
+        </ng-container> -->
+        <!-- <ng-container matColumnDef="Completed By time">
           <th mat-header-cell *matHeaderCellDef>Completed By time</th>
           <td mat-cell class="CompletedBytime-cell" *matCellDef="let data">
             {{getHours(data.createdAt,data.userCompletedDate)}}</td>
-        </ng-container>
+        </ng-container> -->
         <ng-container matColumnDef="Actions">
           <th mat-header-cell *matHeaderCellDef>Actions</th>
           <td mat-cell class="CompletedBytime-cell" *matCellDef="let data">

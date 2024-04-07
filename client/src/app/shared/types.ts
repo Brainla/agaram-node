@@ -187,7 +187,11 @@ export enum ProcessType {
   "QUALITY ASURENCE" = "QUALITY ASURENCE",
   "END TO END" = "END TO END",
   "SUPPORT" ="SUPPORT",
-  "REWORK"="REWORK"
+  "REWORK"="REWORK",
+  "InDesign to XML"="InDesign to XML",  
+  "Word to XML"="Word to XML",  
+  "ePub to XML"="ePub to XML",
+  "XML to PDF"="XML to PDF",
 }
 
 export interface PagedData<T> {

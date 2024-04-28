@@ -122,8 +122,6 @@ export default class CreateArticle {
       }
       else{
         if(sd && ed){
-          sd.setHours(0, 0, 0, 0);
-          ed.setHours(23, 59, 59, 999);
           where.completedDate= {
             $gte: getStartDateWithTime(sd),
             $lte: getEndDateWithTime(ed),
@@ -217,18 +215,18 @@ export default class CreateArticle {
         if(filterDate=="1"){
           if(sd && ed){
             where.createdAt= {
-              $gte: getCurrentDate(sd),
-              $lte: getCurrentDate(ed),
+              $gte: getStartDateWithTime(sd),
+              $lte: getEndDateWithTime(ed),
             }
           }
           else if(sd){
             where.createdAt= {
-              $gte: getCurrentDate(sd)
+              $gte: getStartDateWithTime(sd)
             }
           }
           else if(ed){
             where.createdAt= {
-              $lte: getCurrentDate(ed)
+              $lte: getEndDateWithTime(ed)
             }
           }
         }
@@ -237,18 +235,18 @@ export default class CreateArticle {
             sd.setHours(0, 0, 0, 0);
             ed.setHours(23, 59, 59, 999);
             where.completedDate= {
-              $gte: getCurrentDate(sd),
-              $lte: getCurrentDate(ed),
+              $gte: getStartDateWithTime(sd),
+              $lte: getEndDateWithTime(ed),
             }
           }
           else if(sd){
             where.completedDate= {
-              $gte: getCurrentDate(sd)
+              $gte: getStartDateWithTime(sd)
             }
           }
           else if(ed){
             where.completedDate= {
-              $lte: getCurrentDate(ed)
+              $lte: getEndDateWithTime(ed)
             }
           }
         }

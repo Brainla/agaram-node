@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from 'src/app/services/user.service';
-import { IUser, UserType, Status } from 'src/app/shared/types';
+import { IUser, UserType, UserActiveStatus } from 'src/app/shared/types';
 import * as moment from 'moment';
 import { FilesService } from 'src/app/services/files.service';
 import { FormControl } from '@angular/forms';
@@ -16,6 +16,7 @@ export class CreateUserComponent implements OnInit {
   myControl = new FormControl();
 
   userTypeOptions = Object.keys(UserType);
+  userActiveStatusOptions = Object.keys(UserActiveStatus);
   formData: IUser = {
     username: "",
     employeeId: "",
@@ -31,13 +32,14 @@ export class CreateUserComponent implements OnInit {
     name: "",
     address: "",
     _id: "",
+    status: UserActiveStatus.Active,
     joiningDate: undefined
   }
 
   hide: boolean = true;
   update: boolean = false;
   profile: boolean = false;
-  constructor(private _userService: UserService, private _filesService: FilesService, private _snackBar: MatSnackBar, private _matDialogRef: MatDialogRef<CreateUserComponent>, @Inject(MAT_DIALOG_DATA) public data: { updateUser: boolean, title: string, status: Status, user: IUser, profile: boolean }) {
+  constructor(private _userService: UserService, private _filesService: FilesService, private _snackBar: MatSnackBar, private _matDialogRef: MatDialogRef<CreateUserComponent>, @Inject(MAT_DIALOG_DATA) public data: { updateUser: boolean, title: string, user: IUser, profile: boolean }) {
     this.update = this.data.updateUser;
     if (this.data.updateUser) {
       this.formData = this.data.user;

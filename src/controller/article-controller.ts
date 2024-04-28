@@ -2,7 +2,7 @@
 import { NextFunction, Request, Response } from "express";
 import CreateArticle from "../service/article-service";
 import UserService from "../service/user-service";
-import { FilterStatus, IArticle, PagedData, ResponseDTO, Status, UserStatus, statusCode } from "../types";
+import { FilterStatus, IArticle, PagedData, ResponseDTO, UserStatus, statusCode } from "../types";
 
 export default class ArticleController {
   private _article: CreateArticle;
@@ -278,7 +278,7 @@ export default class ArticleController {
           if (!isAdm) {
             article = { ...article, ...{ client: alreadyExistArticle.client } };
           }
-          if(alreadyExistArticle.UserStatus != UserStatus.COMPLETED && alreadyExistArticle.Status != Status.CLOSED && alreadyExistArticle.Status != Status.COMPLETED ){
+          if(alreadyExistArticle.UserStatus != UserStatus.COMPLETED && alreadyExistArticle.UserStatus != UserStatus.CLOSED && alreadyExistArticle.UserStatus != UserStatus.COMPLETED ){
             await this._article.updateArticle({ ...article }, alreadyExistArticle._id);
           }
         }

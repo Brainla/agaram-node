@@ -1,11 +1,3 @@
-
-export const  displayStatus :any= {
-    ASSIGNED: "Assigned",
-    UNASSIGNED: "Unassigned",
-    COMPLETED: "Completed",
-    CLOSED: "Closed",
-    REJECTED: "Rejected",
-  }
   
   export const  displayInputType :any = {
     "PRINTED PDF": "Printed PDF",
@@ -33,6 +25,10 @@ export const  displayStatus :any= {
     "XML to PDF":"XML to PDF",
   }
   export const displayUserStatus:any=  {
+    ASSIGNED: "Assigned",
+    UNASSIGNED: "Unassigned",
+    CLOSED: "Closed",
+    REJECTED: "Rejected",
     STARTED: "Started",
     "NOT STARTED": "Not Started",
     COMPLETED: "Completed"

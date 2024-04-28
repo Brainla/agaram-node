@@ -118,7 +118,7 @@ export default class LeaveService {
                 usr = JSON.parse(usr);
               }
               if (usr) {
-                return usr.employeeId;
+                return usr.name;
               }
               return "";
             }

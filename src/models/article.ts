@@ -58,15 +58,15 @@ const articleSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    status: {
-      type: String,
-      required: true,
-      enum: ["ASSIGNED", "UNASSIGNED", "CLOSED", "REJECTED", "COMPLETED"],
-      default: "UNASSIGNED"
-    },
+    // status: {
+    //   type: String,
+    //   required: true,
+    //   enum: ["ASSIGNED", "UNASSIGNED", "CLOSED", "REJECTED", "COMPLETED"],
+    //   default: "UNASSIGNED"
+    // },
     userstatus: {
       type: String,
-      enum: ["STARTED", "NOT STARTED", "COMPLETED"],
+      enum: ["ASSIGNED", "UNASSIGNED","STARTED", "NOT STARTED", "COMPLETED","CLOSED", "REJECTED",],
       default: "NOT STARTED"
     },
     assignedTo: {

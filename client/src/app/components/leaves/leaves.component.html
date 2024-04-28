@@ -26,7 +26,7 @@
         <tbody>
           <tr *ngFor="let data of dataSource; let i = index">
             <th scope="row">{{ ((page-1) * pageSize)+(i + 1) }}</th>
-            <td>{{data.appliedBy.username}} - {{data.appliedBy.employeeId}} ({{data.appliedBy.type}})</td>
+            <td>{{data.appliedBy.name}} </td>
             <td>{{ data.dateOfLeave|date }}</td>
             <td>{{ data.type }}</td>
             <td>{{ data.reason }}</td>

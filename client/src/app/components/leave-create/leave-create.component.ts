@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/services/auth.service';
 import { LeaveService } from 'src/app/services/leave.service';
-import { ILeave, IUser, LeaveType, Status } from 'src/app/shared/types';
+import { ILeave, IUser, LeaveType } from 'src/app/shared/types';
 
 @Component({
   selector: 'app-leave-create',
@@ -23,7 +23,7 @@ export class CreateLeaveComponent implements OnInit {
   hide: boolean = true;
   update: boolean = false;
   profile: boolean = false;
-  constructor(private _authService: AuthService, private _leaveService: LeaveService, private _snackBar: MatSnackBar, private _matDialogRef: MatDialogRef<CreateLeaveComponent>, @Inject(MAT_DIALOG_DATA) public data: { updateLeave: boolean, title: string, status: Status, leave: ILeave, profile: boolean }) {
+  constructor(private _authService: AuthService, private _leaveService: LeaveService, private _snackBar: MatSnackBar, private _matDialogRef: MatDialogRef<CreateLeaveComponent>, @Inject(MAT_DIALOG_DATA) public data: { updateLeave: boolean, title: string, leave: ILeave, profile: boolean }) {
     this.update = this.data.updateLeave;
     if (this.data.updateLeave) {
       this.formData = this.data.leave;

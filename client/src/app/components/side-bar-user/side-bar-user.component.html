@@ -26,7 +26,8 @@
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <span class="nav-link px-3 userinfo text-capitalize" [matMenuTriggerFor]="menu" style="cursor: pointer;">
-          <img class="profile-photo" [src]="profileImage" />
+          <img class="profile-photo" [src]="profileImage" *ngIf="profileImage"/>
+          
           {{user?.username}}
         </span>
         <mat-menu #menu="matMenu">

@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ArticleService } from 'src/app/services/article.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
-import IArticle, { IArticleSave, IUser, Status } from 'src/app/shared/types';
+import IArticle, { IArticleSave } from 'src/app/shared/types';
 import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-article-import-form',
@@ -70,7 +70,6 @@ export class ArticleImportComponent implements OnInit {
       processType: obj["Process Type"],
       assignedTo: obj["Assigned To"],
       userstatus:obj["User Status"],
-      status: obj["Status"],
       complexity:obj["Complexity"],
       inputType:obj["Input Type"],
       mathCount:obj["Math Count"],
@@ -200,15 +199,7 @@ export class ArticleImportComponent implements OnInit {
                 ev.target.value="";
                 this.jsonData=[];
                 break;
-              }
-              if(Object.keys(Status).indexOf(arrData[loop]["Status"])==-1){
-                this._snackBar.open('Invalid status ('+arrData[loop]["Status"]+') in row '+(loop+1), "", {
-                  duration: 3000
-                });
-                ev.target.value="";
-                this.jsonData=[];
-                break;
-              }
+              }              
               if(Object.keys(UserStatus).indexOf(arrData[loop]["User Status"])==-1){
                 this._snackBar.open('Invalid User Status ('+arrData[loop]["User Status"]+') in row '+(loop+1), "", {
                   duration: 3000

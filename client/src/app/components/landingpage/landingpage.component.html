@@ -59,7 +59,7 @@
                     <h5>{{obja.article}}</h5>
                     <div class="">
                       
-                      <span [ngClass]="{'bg-warning': obja.status === 'ASSIGNED' || obja.status === 'UNASSIGNED', 'bg-danger' : obja.status === 'REJECTED', 'bg-success' : obja.status === 'CLOSED'|| obja.status === 'COMPLETED' }" class="badge bg-secondary float-start">{{obja.status}}</span>
+                      <span [ngClass]="{'bg-warning': obja.userstatus === 'ASSIGNED' || obja.userstatus === 'UNASSIGNED', 'bg-danger' : obja.userstatus === 'REJECTED', 'bg-success' : obja.userstatus === 'CLOSED'|| obja.userstatus === 'COMPLETED' }" class="badge bg-secondary float-start">{{obja.userstatus}}</span>
                       <span class="badge bg-secondary float-end">{{obja.createdAt|date}}</span>
                     </div>
                   </div>

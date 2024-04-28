@@ -3,7 +3,7 @@ import ValidatorError from "../exceptions/validator-error";
 import Article from "../models/article";
 import User from "../models/user";
 import { IArticle, FilterStatus } from "../types";
-import { createStartAndEndIndex, getCurrentDate, getCurrentDateWithTime } from "../utils";
+import { convertFilterDate, createStartAndEndIndex, getCurrentDate, getCurrentDateWithTime, getEndDateWithTime, getStartDateWithTime } from "../utils";
 import { ExcelService } from "./excel-service";
 import excel from 'exceljs';
 export default class CreateArticle {
@@ -105,18 +105,18 @@ export default class CreateArticle {
       if(filterDate=="1"){
         if(sd && ed){
           where.createdAt= {
-            $gte: getCurrentDate(sd),
-            $lte: getCurrentDate(ed),
+            $gte: getStartDateWithTime(sd),
+            $lt: getEndDateWithTime(ed),
           }
         }
         else if(sd){
           where.createdAt= {
-            $gte: getCurrentDate(sd)
+            $gte: getStartDateWithTime(sd)
           }
         }
         else if(ed){
           where.createdAt= {
-            $lte: getCurrentDate(ed)
+            $lte: getEndDateWithTime(ed)
           }
         }
       }
@@ -125,18 +125,18 @@ export default class CreateArticle {
           sd.setHours(0, 0, 0, 0);
           ed.setHours(23, 59, 59, 999);
           where.completedDate= {
-            $gte: getCurrentDate(sd),
-            $lte: getCurrentDate(ed),
+            $gte: getStartDateWithTime(sd),
+            $lte: getEndDateWithTime(ed),
           }
         }
         else if(sd){
           where.completedDate= {
-            $gte: getCurrentDate(sd)
+            $gte: getStartDateWithTime(sd)
           }
         }
         else if(ed){
           where.completedDate= {
-            $lte: getCurrentDate(ed)
+            $lte: getEndDateWithTime(ed)
           }
         }
       }
@@ -316,7 +316,7 @@ export default class CreateArticle {
                 usr=JSON.parse(usr);
               }
               if(usr){
-                return usr.employeeId;
+                return usr.name;
               }                
               return "";
             }
@@ -342,11 +342,7 @@ export default class CreateArticle {
         {
           header:"User Status",
           key:"userstatus"
-        },      
-        {
-          header:"Status",
-          key:"status"
-        },    
+        },
         {
           header:"Created Date",
           key:"createdAt",

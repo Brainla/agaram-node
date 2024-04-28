@@ -62,14 +62,14 @@
       </mat-form-field>   
 
       <mat-form-field appearance="outline" class="ms-2">
-        <mat-label>Start Date</mat-label>
+        <mat-label>From Date</mat-label>
         <input matInput [(ngModel)]="startDate" [matDatepicker]="spicker">
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="spicker"></mat-datepicker-toggle>
         <mat-datepicker #spicker></mat-datepicker>
       </mat-form-field>
       <mat-form-field appearance="outline" class="ms-2">
-        <mat-label>End Date</mat-label>
+        <mat-label>To Date</mat-label>
         <input matInput [(ngModel)]="endDate" [matDatepicker]="epicker">
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="epicker"></mat-datepicker-toggle>
@@ -118,7 +118,7 @@
         </ng-container>
         <ng-container matColumnDef="Assigned To">
           <th mat-header-cell *matHeaderCellDef>Assigned To</th>
-          <td mat-cell class="assignedTo-cell" *matCellDef="let data">{{data.assignedTo?.username}}</td>
+          <td mat-cell class="assignedTo-cell" *matCellDef="let data">{{data.assignedTo?.name}}</td>
         </ng-container>
         <ng-container matColumnDef="Status">
           <th mat-header-cell *matHeaderCellDef>Status</th>

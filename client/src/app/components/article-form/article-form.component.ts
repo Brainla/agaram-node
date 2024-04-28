@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ArticleService } from 'src/app/services/article.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
-import IArticle, { IArticleSave, IUser, Status } from 'src/app/shared/types';
+import IArticle, { IArticleSave, IUser } from 'src/app/shared/types';
 
 @Component({
   selector: 'app-article-form',
@@ -21,14 +21,12 @@ export class ArticleFormComponent implements OnInit {
   article: string = "";
   pages: number = 0;
   processType: ProcessType = ProcessType.OCR;
-  status: Status = Status.ASSIGNED;
   userstatus:UserStatus=UserStatus["NOT STARTED"];
   assignedTo?:string = undefined;
   closedDate?:Date = undefined;
   completedDate?:Date = undefined;
   targetDate?:Date=undefined;
   userstatusOptions = Object.keys(UserStatus);
-  statusOptions = Object.keys(Status);
   users : IUser[]|null = [];
   fromNonAdmin:boolean=false;
   inputType:InputType=InputType["SCANNED PDF"];
@@ -42,7 +40,7 @@ export class ArticleFormComponent implements OnInit {
   blnUpdateArticle:boolean =false;
   AdminCommand:string="";
   _id?:string="";
-  constructor(private _authService: AuthService, private _articleService: ArticleService, private _userService:UserService, private _snackBar: MatSnackBar, private _dialog: MatDialogRef<ArticleFormComponent>, @Inject(MAT_DIALOG_DATA) public data: { updateArticle: boolean, title: string, status: Status, article: IArticle,fromNonAdmin:boolean}) {
+  constructor(private _authService: AuthService, private _articleService: ArticleService, private _userService:UserService, private _snackBar: MatSnackBar, private _dialog: MatDialogRef<ArticleFormComponent>, @Inject(MAT_DIALOG_DATA) public data: { updateArticle: boolean, title: string, article: IArticle,fromNonAdmin:boolean}) {
     this.fromNonAdmin = this.data.fromNonAdmin;
     
     
@@ -75,9 +73,7 @@ export class ArticleFormComponent implements OnInit {
         this.userComments = this.data.article.userComments;      
       if(this.data.article.assignedPages)
         this.assignedPages = this.data.article.assignedPages;
-      if(!this.fromNonAdmin){
-        if(this.data.article.status)
-          this.status= Status[this.data.article.status];
+      if(!this.fromNonAdmin){        
         if(this.data.article.assignedTo){
           this.assignedTo = this.data.article.assignedTo._id;
         }
@@ -85,9 +81,7 @@ export class ArticleFormComponent implements OnInit {
           this.targetDate = this.data.article.targetDate;
         }         
       }     
-      if(this.fromNonAdmin){
-        this.userstatus = UserStatus[this.data.article.userstatus];        
-      }      
+      this.userstatus = UserStatus[this.data.article.userstatus];
     }
   }
   ngOnInit(): void {
@@ -115,7 +109,6 @@ export class ArticleFormComponent implements OnInit {
       pages: this.pages,
       processType: this.processType,
       assignedTo: this.assignedTo,
-      status: Status.ASSIGNED,      
       userstatus:this.userstatus,
       complexity:this.complexity,
       inputType:this.inputType,
@@ -174,7 +167,6 @@ export class ArticleFormComponent implements OnInit {
       pages: this.pages,
       processType: this.processType,
       assignedTo: this.assignedTo,
-      status: this.status,
       userstatus:this.userstatus,
       complexity:this.complexity,
       inputType:this.inputType,
@@ -203,5 +195,8 @@ export class ArticleFormComponent implements OnInit {
   }
   CloseArticle():void{
     
+  }
+  getUserOptions():string[]{
+    return this.userstatusOptions.filter((a)=>['STARTED','NOT STARTED','COMPLETED'].indexOf(a)>-1)
   }
 }

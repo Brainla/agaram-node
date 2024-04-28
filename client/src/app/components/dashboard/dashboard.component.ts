@@ -10,7 +10,7 @@ import { ArticleDeleteComponent } from '../article-delete/article-delete.compone
 import { ArticleFormComponent } from '../article-form/article-form.component';
 import { ArticleImportComponent } from '../article-import/article-import.component';
 import { CreateAdminCommandComponent } from '../create-admincommand/create-admincommand.component';
-import { displayComplexity, displayInputType, displayProcessType, displayStatus, displayUserStatus } from 'src/app/shared/displayEnums';
+import { displayComplexity, displayInputType, displayProcessType, displayUserStatus } from 'src/app/shared/displayEnums';
 
 @Component({
   selector: 'app-dashboard',
@@ -45,7 +45,6 @@ export class DashboardComponent implements OnInit {
     // 'Math Count',
     // 'Images Count',
     'Assigned To',
-    'Status',
     'User Status',
     'Created Date',
     // 'Target Date',
@@ -101,9 +100,6 @@ export class DashboardComponent implements OnInit {
       },
     });
   }
-  getDisplayStatus(str:string):any{
-    return displayStatus[str].toString();
-  }
   getDisplayInputType(str:string):any{
     return displayInputType[str].toString();
   }
@@ -138,7 +134,6 @@ export class DashboardComponent implements OnInit {
       data: {
         updateArticle: true,
         title: 'Update Article',
-        status: data.status,
         article: data,
       },
     });

@@ -2,7 +2,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UserService } from 'src/app/services/user.service';
-import { IUser, UserType,PagedData } from 'src/app/shared/types';
+import { IUser, UserType,PagedData, UserActiveStatus } from 'src/app/shared/types';
 import { CreateUserComponent } from '../create-user/create-user.component';
 import { UserDeleteComponent } from '../user-delete/user-delete.component';
 
@@ -30,6 +30,7 @@ export class UsersComponent implements OnInit {
     'Contact Person',
     'Contact Person Mobile',
     'Joining Date',
+    'Status',
   ];
   dataSource: IUser[] = [];
 
@@ -72,6 +73,7 @@ export class UsersComponent implements OnInit {
       name: "",
       address: "",
       _id:"",
+      status: UserActiveStatus.Active,
       joiningDate:undefined
     }
     const dialogRef = this._dialog.open(CreateUserComponent,{

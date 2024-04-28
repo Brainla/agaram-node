@@ -22,6 +22,7 @@ export interface IUser {
     mobileNo: string;
     //email: string;
   };
+  status: UserActiveStatus;
   photo?:Buffer;
   joiningDate?: Date;
   lastLoggedToken?:String;
@@ -56,7 +57,6 @@ export interface IArticle {
   client: string,
   batch: string,
   assignedTo?: string,
-  status: Status,
   closedDate?: Date,
   completedDate?: Date,
   IsCreatedByMe?: boolean,
@@ -84,17 +84,14 @@ export interface ITransaction {
   updatedAt: Date;
 }
 
-export enum Status {
+export enum UserStatus {
   ASSIGNED = "ASSIGNED",
   UNASSIGNED = "UNASSIGNED",
+  STARTED = "STARTED",
+  "NOT STARTED" = "NOT STARTED",
   COMPLETED = "COMPLETED",
   CLOSED = "CLOSED",
   REJECTED = "REJECTED",
-}
-export enum UserStatus {
-  STARTED = "STARTED",
-  "NOT STARTED" = "NOT STARTED",
-  COMPLETED = "COMPLETED"
 }
 
 export enum UserType {
@@ -103,7 +100,10 @@ export enum UserType {
   CLIENT = "CLIENT",
   SUP = "SUP",
 }
-
+export enum UserActiveStatus {
+  Active = "Active",
+  "Inactive" = "Inactive"
+}
 export enum ModelType {
   USER = "USER",
   TRANSACTION = "TRANSACTION",
@@ -166,6 +166,8 @@ declare global {
 export enum FilterStatus {
   ASSIGNED = "ASSIGNED",
   UNASSIGNED = "UNASSIGNED",
+  STARTED = "STARTED",
+  "NOT STARTED" = "NOT STARTED",
   COMPLETED = "COMPLETED",
   CLOSED = "CLOSED",
   REJECTED = "REJECTED",

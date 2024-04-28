@@ -57,7 +57,7 @@ export const articleValidatorSchema: ValidatorObject[] = [
     },
  },
  {
-    key: "status",
+    key: "userstatus",
     type: ValidatorTypes.String,
     validators: [FunctionTypes.required, FunctionTypes.notBlank],
     messages: {

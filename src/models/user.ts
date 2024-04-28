@@ -62,7 +62,12 @@ const userSchema = new mongoose.Schema(
     },
     lastLoggedToken:{
       type:String
-    }
+    },
+    status: {
+      type: String,
+      options: ["Active", "Inactive"],
+      default: "Active"
+    },
   },
   { timestamps: true }
 );

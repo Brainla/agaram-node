@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AnnouncementService } from 'src/app/services/announcement.service';
-import { IAnnouncement, Status } from 'src/app/shared/types';
+import { IAnnouncement } from 'src/app/shared/types';
 
 @Component({
   selector: 'app-announcement-create',
@@ -19,7 +19,7 @@ export class CreateAnnouncementComponent implements OnInit {
   hide: boolean = true;  
   update: boolean = false;
   profile:boolean=false;
-  constructor(private _announcementService: AnnouncementService, private _snackBar: MatSnackBar, private _matDialogRef: MatDialogRef<CreateAnnouncementComponent>,@Inject(MAT_DIALOG_DATA) public data: { updateAnnouncement: boolean, title: string, status: Status, announcement: IAnnouncement,profile:boolean}) { 
+  constructor(private _announcementService: AnnouncementService, private _snackBar: MatSnackBar, private _matDialogRef: MatDialogRef<CreateAnnouncementComponent>,@Inject(MAT_DIALOG_DATA) public data: { updateAnnouncement: boolean, title: string, announcement: IAnnouncement,profile:boolean}) { 
     this.update=this.data.updateAnnouncement;
     if(this.data.updateAnnouncement) {
       this.formData = this.data.announcement;

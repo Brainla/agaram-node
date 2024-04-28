@@ -20,16 +20,16 @@
     <div class="d-flex justify-content-end">
       <mat-label>Filter by</mat-label>
       <mat-radio-group class="me-5" aria-label="Select an option" [(ngModel)]="filterDate">
-        <mat-radio-button value="1">Created date</mat-radio-button>
-        <mat-radio-button value="2">Completed date</mat-radio-button>
+        <mat-radio-button value="1">Record Created date</mat-radio-button>
+        <mat-radio-button value="2">Record Completed date</mat-radio-button>
       </mat-radio-group>
     </div>
     <div class="d-flex justify-content-end mb-3">
 
-      <mat-form-field appearance="outline">
+      <!-- <mat-form-field appearance="outline">
         <mat-label>Client</mat-label>
         <input matInput placeholder="Client" name="client" type="text" [(ngModel)]="client" #pageTemp="ngModel" />
-      </mat-form-field>
+      </mat-form-field> -->
 
 
       <mat-form-field appearance="outline" class="ms-2">
@@ -44,19 +44,19 @@
         <mat-label>Assigned To</mat-label>
         <mat-select #assignedToTemp="ngModel" [(ngModel)]="assignedTo" name="assignedTo">
           <mat-option *ngFor="let option of users" [value]="option._id">
-            {{option.username}} - {{option.employeeId}} ({{option.type}})
+            {{option.name}} - ({{option.type}})
           </mat-option>
         </mat-select>
       </mat-form-field>
         <mat-form-field appearance="outline" class="ms-2">
-          <mat-label>Start Date</mat-label>
+          <mat-label>From Date</mat-label>
           <input matInput [(ngModel)]="startDate" [matDatepicker]="spicker">
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle matSuffix [for]="spicker"></mat-datepicker-toggle>
           <mat-datepicker #spicker></mat-datepicker>
         </mat-form-field>
         <mat-form-field appearance="outline" class="ms-2">
-          <mat-label>End Date</mat-label>
+          <mat-label>To Date</mat-label>
           <input matInput [(ngModel)]="endDate" [matDatepicker]="epicker">
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle matSuffix [for]="epicker"></mat-datepicker-toggle>
@@ -110,12 +110,8 @@
         </ng-container>
         <ng-container matColumnDef="Assigned To">
           <th mat-header-cell *matHeaderCellDef>Assigned To</th>
-          <td mat-cell class="assignedTo-cell" *matCellDef="let data">{{data.assignedTo?.username}}</td>
-        </ng-container>
-        <ng-container matColumnDef="Status">
-          <th mat-header-cell *matHeaderCellDef>Status</th>
-          <td mat-cell class="status-cell" *matCellDef="let data">{{getDisplayStatus(data.status)}}</td>
-        </ng-container>
+          <td mat-cell class="assignedTo-cell" *matCellDef="let data">{{data.assignedTo?.name}}</td>
+        </ng-container>       
         <ng-container matColumnDef="User Status">
           <th mat-header-cell *matHeaderCellDef>User Status</th>
           <td mat-cell class="userstatus-cell" *matCellDef="let data">{{getDisplayUserStatus(data.userstatus)}}</td>

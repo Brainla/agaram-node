@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { IUser, UserType, IResetPassword, PagedData } from "../types";
+import { IUser, UserType, IResetPassword, PagedData, UserActiveStatus } from "../types";
 import User from "../models/user";
 import bcrypt from "bcrypt";
 import ValidatorError from "../exceptions/validator-error";
@@ -254,6 +254,10 @@ export default class UserService {
             return value;
           }
         },
+        {
+          header: "Status",
+          key: "status"
+        },
       ];
       let convertedData = data.map(function (row) {
         let rrow = JSON.parse(JSON.stringify(row));
@@ -275,8 +279,9 @@ export default class UserService {
     try {
       const getallusers: IUser[] = await User.find({
         type: { $ne: UserType.ADMIN },
+        status: { $ne: UserActiveStatus.Inactive },
       })
-        .sort("username").select("-photo")
+        .sort("name").select("-photo")
       return getallusers;
     } catch (error) {
       throw error;

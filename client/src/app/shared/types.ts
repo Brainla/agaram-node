@@ -4,7 +4,10 @@ export interface IResetPassword {
   username: string;
   _id?: string;
 }
-
+export enum UserActiveStatus {
+  Active = "Active",
+  "Inactive" = "Inactive"
+}
 export interface IUser {
   _id?: string;
   email: string;
@@ -22,7 +25,8 @@ export interface IUser {
   };
   name: string;
   address: string;
-  joiningDate?: Date;
+  status: UserActiveStatus;
+  joiningDate?: Date; 
 }
 
 export interface ITransaction {
@@ -48,7 +52,6 @@ export default interface IArticle {
   processType: ProcessType;
   mathCount: string;
   imagesCount: string;
-  status: Status;
   userstatus:UserStatus;
   assignedTo: IUser;
   IsCreatedByMe: boolean;
@@ -81,7 +84,6 @@ export interface IArticleSave {
   imagesCount: string,
   AdminCommand: string,
   assignedTo?: string,
-  status: Status,
   userstatus:UserStatus,
   closedDate?: Date,
   completedDate?: Date,
@@ -91,14 +93,6 @@ export interface IArticleSave {
   targetDate?:Date,
   userComments:string,
   assignedPages:string,
-}
-
-export enum Status {
-  ASSIGNED = "ASSIGNED",
-  UNASSIGNED = "UNASSIGNED",
-  COMPLETED = "COMPLETED",
-  CLOSED = "CLOSED",
-  REJECTED = "REJECTED"
 }
 
 export enum UserType {
@@ -163,6 +157,8 @@ declare global {
 export enum FilterStatus {
   ASSIGNED = "ASSIGNED",
   UNASSIGNED = "UNASSIGNED",
+  STARTED = "STARTED",
+  "NOT STARTED" = "NOT STARTED",
   COMPLETED = "COMPLETED",
   CLOSED = "CLOSED",
   REJECTED = "REJECTED",
@@ -225,7 +221,11 @@ export enum LeaveType{
 }
 
 export enum UserStatus {
+  ASSIGNED = "ASSIGNED",
+  UNASSIGNED = "UNASSIGNED",
   STARTED = "STARTED",
   "NOT STARTED" = "NOT STARTED",
-  COMPLETED = "COMPLETED"
+  COMPLETED = "COMPLETED",
+  CLOSED = "CLOSED",
+  REJECTED = "REJECTED",
 }
